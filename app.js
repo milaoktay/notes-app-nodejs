@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const blogRoutes = require("./routes/blogRoutes");
+const noteRoutes = require("./routes/noteRoutes");
 
 const app = express();
 
@@ -43,7 +43,7 @@ app.get("/about", (req, res) => {
 });
 
 // blog routes
-app.use("/notes", blogRoutes);
+app.use("/notes", noteRoutes);
 
 // 404 page
 app.use((req, res) => {
