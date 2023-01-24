@@ -2,19 +2,19 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const noteRoutes = require("./routes/noteRoutes");
+require("dotenv").config();
 
 const app = express();
 
-// connect to mongodb & listen for requests
-const dbURI =
-  "mongodb+srv://db-note-app:123456abcd789@cluster0.zabyatq.mongodb.net/?retryWrites=true&w=majority";
+const cors = require("cors");
+app.use(cors());
 
 mongoose.set("strictQuery", false);
 
 const startServer = async () => {
   try {
-    await mongoose.connect(dbURI);
-    app.listen(5000);
+    await mongoose.connect(process.env.MONGODB_URI);
+    app.listen(process.env.PORT);
   } catch (error) {
     console.error({ error });
   }
